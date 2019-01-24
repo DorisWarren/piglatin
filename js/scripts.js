@@ -17,19 +17,27 @@ var vowels = ['a', 'e','i','o','u']
 
 function vowel(word) {
   if (vowels.includes(word[0])) {
-    return word + "way"
+    return word + "way";
   }
 }
 
 function consonant(word) {
   for (var i = 0;i < word.length;) {
+    // if ((word[0] === 'q') && (word[i + 1] === 'u')) {
+    //   i += 1;
+    // } else
     if(!vowels.includes(word[i])) {
       i += 1;
+    } else if(word[0] === "y") {
+      var y = word.slice(0, 1)
+      var sliceWord = word.slice(1, word.length)
+      var newWord = sliceWord + y + "ay"
+      return newWord
     } else {
       var cons = word.slice(0, [i]);
       var sliceWord = word.slice(i, word.length);
       var newWord = sliceWord + cons + "ay"
-      return newWord
+      return newWord;
     }
   }
 }
@@ -38,7 +46,7 @@ function qu(word) {
   var qu = word.slice(0,2)
   var sliceWord = word.slice(2, word.length)
   var newWord = sliceWord + qu + "ay"
-  return newWord
+  return newWord;
 }
 
 // function pigLatin(word) {
@@ -56,7 +64,6 @@ $(document).ready(function() {
     var result = consonant(sentence);
     var result2 = vowel(sentence)
     var result3 = qu(sentence)
-    $("ul").text(result3, result, result2);
-
+    $("ul").text(result, result2, result3);
   });
 });
